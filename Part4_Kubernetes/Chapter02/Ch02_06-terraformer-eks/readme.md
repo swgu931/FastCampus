@@ -1,6 +1,24 @@
 # Terraformer
 - ref : https://github.com/GoogleCloudPlatform/terraformer/blob/master/docs/aws.md
 
+## Terraformer Install
+
+```
+curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
+sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
+sudo apt-get update && sudo apt-get install terraform
+```
+
+or 
+
+```
+export PROVIDER=aws
+curl -LO https://github.com/GoogleCloudPlatform/terraformer/releases/download/$(curl -s https://api.github.com/repos/GoogleCloudPlatform/terraformer/releases/latest | grep tag_name | cut -d '"' -f 4)/terraformer-${PROVIDER}-linux-amd64
+chmod +x terraformer-${PROVIDER}-linux-amd64
+sudo mv terraformer-${PROVIDER}-linux-amd64 /usr/local/bin/terraformer
+terraformer version
+```
+
 ## S3 및 DynamoDB table 생성
 ```
 cd ./terraform-backend
